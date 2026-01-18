@@ -1,18 +1,16 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
 
-dotenv.config();
+import { ENV } from "./env.js";
 
-const connectDB = async () => {
+export const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(
-      process.env.MONGO_URI || "mongodb://localhost:27017/talent-iq",
-    );
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
+    if (!ENV.DB_URL) {
+      throw new Error("DB_URL is not defined in environment variables");
+    }
+    const conn = await mongoose.connect(ENV.DB_URL);
+    console.log("✅ Connected to MongoDB:", conn.connection.host);
   } catch (error) {
-    console.error(`Error: ${error.message}`);
-    process.exit(1);
+    console.error("❌ Error connecting to MongoDB", error);
+    process.exit(1); // 0 means success, 1 means failure
   }
 };
-
-export default connectDB;
