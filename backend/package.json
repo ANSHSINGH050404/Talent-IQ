@@ -13,12 +13,16 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@clerk/express": "^1.7.63",
+    "@stream-io/node-sdk": "^0.7.33",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "helmet": "^8.1.0",
+    "inngest": "^3.49.3",
     "mongoose": "^9.1.4",
     "morgan": "^1.10.1",
+    "stream-chat": "^9.28.0",
     "talent-iq": "file:.."
   },
   "devDependencies": {
